@@ -1,0 +1,8 @@
+dashify_dashboard:
+  path: /admin
+  controller: Okhachiai\DashifyBundle\Controller\DashboardController::index
+
+dashify_bundle:
+    resource: '@DashifyBundle/Controller/'
+    type: attribute
+    prefix: /

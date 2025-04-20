@@ -1,0 +1,40 @@
+# Ce fichier définit la configuration de sécurité par défaut pour le bundle Dashify
+# Il peut être importé dans votre application avec:
+# imports:
+#     - { resource: "@DashifyBundle/Resources/config/security.yaml" }
+
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        dashify_users:
+            entity:
+                class: '%dashify.user.class%'
+                property: '%dashify.user.identifier_property%'
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        dashify_admin:
+            pattern: ^/admin
+            lazy: true
+            provider: dashify_users
+            form_login:
+                login_path: dashify_login
+                check_path: dashify_login
+                enable_csrf: true
+                default_target_path: dashify_dashboard
+            logout:
+                path: dashify_logout
+                target: dashify_login
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                path: /admin
+                always_remember_me: true
+
+    access_control:
+        - { path: ^/admin/login, roles: PUBLIC_ACCESS }
+        - { path: ^/admin, roles: ROLE_ADMIN } 

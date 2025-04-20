@@ -1,0 +1,5 @@
+dashify:
+    title: 'Dashify Admin'
+    security:
+        user_class: App\Entity\User
+        user_identifier_property: email 

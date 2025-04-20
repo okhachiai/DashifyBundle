@@ -1,0 +1,41 @@
+{% extends '@Dashify/layout.html.twig' %}
+
+{% block title %}Edit {{ attribute.name }}{% endblock %}
+
+{% block content %}
+    <div class="container mx-auto px-6 py-8">
+        <div class="flex justify-between items-center mb-6">
+            <h3 class="text-3xl font-medium text-gray-700">Edit {{ attribute.name }}</h3>
+            
+            <a href="{{ path('dashify_' ~ attribute.name|lower ~ '_index') }}"
+               class="px-4 py-2 font-medium tracking-wide text-gray-700 capitalize transition-colors duration-200 transform bg-gray-200 rounded-md hover:bg-gray-300 focus:outline-none focus:bg-gray-300">
+                Back to list
+            </a>
+        </div>
+
+        <div class="w-full overflow-hidden bg-white rounded-lg shadow-xs">
+            <div class="p-6">
+                {{ form_start(form, {'attr': {'class': 'space-y-6'}}) }}
+                    {% for field in form %}
+                        <div class="space-y-2">
+                            {{ form_label(field, null, {'label_attr': {'class': 'text-sm font-medium text-gray-700'}}) }}
+                            <div class="mt-1">
+                                {{ form_widget(field, {'attr': {
+                                    'class': 'shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md'
+                                }}) }}
+                            </div>
+                            {{ form_errors(field, {'attr': {'class': 'text-red-500 text-xs mt-1'}}) }}
+                        </div>
+                    {% endfor %}
+
+                    <div class="flex justify-end space-x-3">
+                        <button type="submit"
+                                class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Update
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %} 

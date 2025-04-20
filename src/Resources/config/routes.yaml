@@ -1,0 +1,9 @@
+controllers:
+    resource: '@DashifyBundle/Controller/'
+    type: attribute
+    prefix: /
+
+dashify_security:
+    resource: ../../Controller/
+    type: attribute
+    prefix: / 

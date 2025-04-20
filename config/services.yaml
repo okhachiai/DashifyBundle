@@ -1,0 +1,38 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    Dashify\DashifyBundle\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Tests/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # Dashify Bundle Services
+    Dashify\DashifyBundle\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    dashify.route_loader:
+        class: Dashify\DashifyBundle\Routing\DashifyRouteLoader
+        tags: ['routing.loader']
+
+    dashify.resource_registry:
+        class: Dashify\DashifyBundle\Registry\ResourceRegistry
+
+    Dashify\DashifyBundle\Security\SecurityManager:
+        arguments:
+            $config: '%dashify.config.security%'
+
+    dashify.security_manager:
+        class: Dashify\DashifyBundle\Security\DashifySecurityManager
+        arguments:
+            $params: '@parameter_bag'
+            $authChecker: '@security.authorization_checker'
+        public: true

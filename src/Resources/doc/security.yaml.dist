@@ -1,0 +1,13 @@
+# config/packages/security.yaml
+imports:
+    - { resource: "@DashifyBundle/Resources/config/security.yaml" }
+
+# Vous pouvez surcharger n'importe quelle configuration ici
+security:
+    # Par exemple, ajouter des firewalls supplémentaires
+    firewalls:
+        # Vos firewalls personnalisés ici
+        
+    # Ou ajouter des règles d'accès supplémentaires
+    access_control:
+        # Vos règles d'accès personnalisées ici 

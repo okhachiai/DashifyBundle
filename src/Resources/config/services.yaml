@@ -1,0 +1,29 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Dashify\DashifyBundle\:
+    resource: '../../*'
+    exclude:
+      - '../../DependencyInjection'
+      - '../../Entity'
+      - '../../Tests'
+      - '../../Resources'
+      - '../../DashifyBundle.php'
+
+  Dashify\DashifyBundle\Controller\:
+    resource: '../../Controller'
+    tags: ['controller.service_arguments']
+
+  Dashify\DashifyBundle\Security\DashifyAuthenticator:
+    arguments:
+      $urlGenerator: '@router'
+
+  Dashify\DashifyBundle\Registry\ResourceRegistry:
+    arguments: ['@parameter_bag']
+
+  Dashify\DashifyBundle\Twig\DashifyExtension:
+    arguments: ['@Dashify\DashifyBundle\Registry\ResourceRegistry']
+    tags: ['twig.extension']

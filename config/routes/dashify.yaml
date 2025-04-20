@@ -1,0 +1,9 @@
+dashify_routes:
+    resource: '@DashifyBundle/Controller/'
+    type: attribute
+    prefix: /admin
+    name_prefix: dashify_
+
+dashify_custom_routes:
+    resource: .
+    type: dashify 

@@ -1,0 +1,18 @@
+dashify:
+    security:
+        enable_login: true
+        login_route: dashify_login
+        logout_route: dashify_logout
+        login_redirect_route: dashify_dashboard
+        logout_redirect_route: dashify_login
+        user_provider: app.user_provider
+        password_hasher: auto
+        user_class: App\Entity\User
+        user_identifier_property: email
+        remember_me: true
+        session_lifetime: 3600
+        roles:
+            view: ['ROLE_DASHIFY_USER']
+            create: ['ROLE_DASHIFY_ADMIN']
+            edit: ['ROLE_DASHIFY_ADMIN']
+            delete: ['ROLE_DASHIFY_ADMIN'] 
